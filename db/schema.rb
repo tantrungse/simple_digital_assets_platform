@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_26_064342) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_26_090442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assets", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
+    t.string "file_url", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.string "assetable_type"
+    t.bigint "assetable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assetable_type", "assetable_id"], name: "index_assets_on_assetable"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

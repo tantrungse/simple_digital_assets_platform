@@ -1,0 +1,34 @@
+<h2>Bulk Upload Assets</h2>
+
+<%= form_with url: bulk_import_creator_assets_path,
+  multipart: true,
+  method: :post,
+  html: {
+    id: "bulk-upload-form",
+    data: { controller: "creator--assets" }
+  } do |f| %>
+  <%= f.file_field :json_file, accept: ".json", id: "json_file_input" %>
+  <%= f.submit "Upload JSON", id: "upload_button", disabled: true %>
+<% end %>
+
+<hr>
+
+<h2>Your Assets</h2>
+
+<% if @assets.any? %>
+  <ul>
+    <% @assets.each do |asset| %>
+      <li>
+        <strong><%= asset.title %></strong> - 
+        $<%= asset.price %> - 
+        <%= link_to "View", asset.file_url, target: "_blank" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="pagination">
+    <%= paginate @assets %>
+  </div>
+<% else %>
+  <p>You have not uploaded any assets yet.</p>
+<% end %>
