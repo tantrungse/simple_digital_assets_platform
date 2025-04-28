@@ -1,4 +1,3 @@
-# app/controllers/purchases_controller.rb
 class PurchasesController < ApplicationController
   load_and_authorize_resource
 

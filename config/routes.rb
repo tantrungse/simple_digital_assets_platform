@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :admin do
-        get "earnings", to: "earnings#index"
+        get "creator_earnings", to: "creator_earnings#index"
       end
     end
   end

@@ -1,5 +1,5 @@
 module Admin
-  class EarningsService
+  class CreatorEarningsService
     def initialize(scope = User.creator)
       @scope = scope
     end
