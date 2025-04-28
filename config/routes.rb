@@ -16,4 +16,12 @@ Rails.application.routes.draw do
   resources :purchases, only: [:index, :create] do
     collection { get :shop }
   end
+
+  namespace :api do
+    namespace :v1 do
+      namespace :admin do
+        get "earnings", to: "earnings#index"
+      end
+    end
+  end
 end

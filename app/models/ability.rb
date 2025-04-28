@@ -17,5 +17,9 @@ class Ability
       can :create, Purchase
       can :shop, Purchase
     end
+
+    if user.admin?
+      can :read, :admin_earnings
+    end
   end
 end
