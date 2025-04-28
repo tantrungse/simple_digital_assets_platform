@@ -1,0 +1,32 @@
+<h2>Assets Shop</h2>
+
+<% if @available_assets.any? %>
+  <ul>
+    <% @available_assets.each do |asset| %>
+      <li>
+        <strong><%= asset.title %></strong> – 
+        $<%= asset.price %> - 
+        Creator: <%= asset.creator&.email %> |
+
+        <% if user_signed_in? && current_user.customer? %>
+          <% if current_user.purchased_assets.exists?(asset.id) %>
+            <em>(Already Purchased)</em>
+          <% else %>
+            <%= form_with url: purchases_path, method: :post, class: "inline-form" do |f| %>
+              <%= hidden_field_tag :asset_id, asset.id %>
+              <%= f.submit "Buy", data: { confirm: "Are you sure you want to buy #{asset.title}?" } %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to "Sign in to buy", new_user_session_path %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="pagination">
+    <%= paginate @available_assets %>
+  </div>
+<% else %>
+  <p>No assets available.</p>
+<% end %>

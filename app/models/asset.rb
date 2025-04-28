@@ -1,5 +1,13 @@
 class Asset < ApplicationRecord
-  belongs_to :assetable, polymorphic: true
+  belongs_to :creator,
+             class_name: "User",
+             foreign_key: "creator_id",
+             inverse_of: :assets
+    has_many :purchases,
+             dependent: :destroy
+    has_many :buyers,
+             through: :purchases,
+             source: :customer
 
   validates :title, presence: true
   validates :description, presence: true

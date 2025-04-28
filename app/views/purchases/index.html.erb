@@ -1,0 +1,20 @@
+<h2>Your Purchased Assets</h2>
+
+<% if @assets.any? %>
+  <ul>
+    <% @assets.each do |asset| %>
+      <li>
+        <strong><%= asset.title %></strong> - 
+        $<%= asset.price %> - 
+        <%= link_to "View", asset.file_url, target: "_blank" %>
+        <%= link_to "Download", asset.file_url, target: "_blank" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="pagination">
+    <%= paginate @assets %>
+  </div>
+<% else %>
+  <p>You have not buy any assets yet.</p>
+<% end %>

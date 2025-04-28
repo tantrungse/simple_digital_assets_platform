@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "home#index"
 
-  namespace :creator do
-    resources :assets, only: [:index, :bulk_import] do
-      collection { post :bulk_import }
-    end
+  resources :assets, only: [:index] do
+    collection { post :bulk_import }
+  end
+
+  resources :purchases, only: [:index, :create] do
+    collection { get :shop }
   end
 end

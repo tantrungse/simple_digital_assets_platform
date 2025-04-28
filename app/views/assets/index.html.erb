@@ -1,11 +1,12 @@
 <h2>Bulk Upload Assets</h2>
 
-<%= form_with url: bulk_import_creator_assets_path,
+<%= form_with url: bulk_import_assets_path,
+  local: true,
+  data: { turbo: false },
   multipart: true,
-  method: :post,
   html: {
     id: "bulk-upload-form",
-    data: { controller: "creator--assets" }
+    data: { controller: "assets" }
   } do |f| %>
   <%= f.file_field :json_file, accept: ".json", id: "json_file_input" %>
   <%= f.submit "Upload JSON", id: "upload_button", disabled: true %>

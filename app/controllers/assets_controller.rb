@@ -1,4 +1,4 @@
-class Creator::AssetsController < ApplicationController
+class AssetsController < ApplicationController
   load_and_authorize_resource
 
   def index
@@ -10,10 +10,10 @@ class Creator::AssetsController < ApplicationController
     result = AssetImportService.new(current_user, file).call
   
     if result.success?
-      redirect_to creator_assets_path, 
+      redirect_to assets_path, 
         notice: "Successfully imported #{result.imported_count} assets."
     else
-      redirect_to creator_assets_path, 
+      redirect_to assets_path, 
         alert: result.error_message
     end
   end
