@@ -9,12 +9,16 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "home#index"
 
-  resources :assets, only: [:index] do
-    collection { post :bulk_import }
+  namespace :creator do
+    resources :assets, only: [:index] do
+      collection { post :bulk_import }
+    end
   end
 
-  resources :purchases, only: [:index, :create] do
-    collection { get :shop }
+  namespace :customer do
+    resources :purchases, only: [:index, :create] do
+      collection { get :shop }
+    end
   end
 
   namespace :api do

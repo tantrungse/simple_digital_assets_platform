@@ -12,7 +12,7 @@
           <% if current_user.purchased_assets.exists?(asset.id) %>
             <em>(Already Purchased)</em>
           <% else %>
-            <%= form_with url: purchases_path, method: :post, class: "inline-form" do |f| %>
+            <%= form_with url: customer_purchases_path, method: :post, class: "inline-form" do |f| %>
               <%= hidden_field_tag :asset_id, asset.id %>
               <%= f.submit "Buy", data: { confirm: "Are you sure you want to buy #{asset.title}?" } %>
             <% end %>

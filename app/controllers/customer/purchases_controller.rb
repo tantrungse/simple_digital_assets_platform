@@ -1,4 +1,4 @@
-class PurchasesController < ApplicationController
+class Customer::PurchasesController < ApplicationController
   load_and_authorize_resource
 
   # shows assets store
@@ -13,7 +13,7 @@ class PurchasesController < ApplicationController
     purchase = current_user.purchases.build(asset: asset)
 
     if purchase.save
-      redirect_to purchases_path, notice: "You’ve purchased “#{asset.title}” successfully!"
+      redirect_to customer_purchases_path, notice: "You’ve purchased “#{asset.title}” successfully!"
     else
       redirect_back fallback_location: asset_path(asset), alert: purchase.errors.full_messages.to_sentence
     end

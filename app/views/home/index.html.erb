@@ -2,11 +2,11 @@
 <% if user_signed_in? %> 
   <div> Welcome <%= current_user.email %> </div> 
   <% if current_user.creator? %>
-    <%= link_to "My Assets", assets_path %>
+    <%= link_to "My Assets", creator_assets_path %>
   <% elsif current_user.customer? %>
-    <%= link_to "My Purchased Assets", purchases_path %>
+    <%= link_to "My Purchased Assets", customer_purchases_path %>
     |
-    <%= link_to "Go shopping", shop_purchases_path %>
+    <%= link_to "Go shopping", shop_customer_purchases_path %>
   <% end %>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
 <% else %>
